@@ -11,8 +11,11 @@ gc = gspread.authorize(credentials)
 
 
 def getSheet():
-    gc = gspread.authorize(credentials)
-    return gc.open("Coppiometro").sheet1
+    try:
+        return gc.open("Coppiometro").sheet1
+    except APIError:
+        gcE = gspread.authorize(credentials)
+        return gcE.open("Coppiometro").sheet1
 
 
 def dateToday():
