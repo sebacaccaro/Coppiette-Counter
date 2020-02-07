@@ -3,6 +3,11 @@ from SheetsModule import addCoppietta as add, noCpp
 import logging
 
 
+def getToken():
+    with open("../token.txt") as tokenFile:
+        return str.strip(tokenFile.readline())
+
+
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
 
@@ -31,7 +36,7 @@ def noCoppietta(update, context):
 
 
 updater = Updater(
-    token='LOL', use_context=True)
+    token=getToken(), use_context=True)
 dispatcher = updater.dispatcher
 start_handler = CommandHandler('start', start)
 add_handler = CommandHandler('cpp', addCoppietta)

@@ -1,6 +1,7 @@
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import date
+from gspread.exceptions import APIError
 
 scope = ['https://spreadsheets.google.com/feeds',
          'https://www.googleapis.com/auth/drive']
@@ -10,6 +11,7 @@ gc = gspread.authorize(credentials)
 
 
 def getSheet():
+    gc = gspread.authorize(credentials)
     return gc.open("Coppiometro").sheet1
 
 
